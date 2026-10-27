@@ -1,5 +1,4 @@
-// 프로토타입 Tweaks(showIntro)와 링크 placeholder를 한곳에서 관리한다.
-// href="#" 인 값은 실제 링크로 교체 필요.
+// 사이트 공통 설정: 이름·주소·메타 정보, 기능 플래그, 외부 링크
 
 export const siteConfig = {
   name: '박찬령',

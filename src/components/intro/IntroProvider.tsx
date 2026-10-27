@@ -9,6 +9,8 @@ export type IntroPhase = "off" | "idle" | "assembling" | "leaving";
 
 interface IntroContextValue {
   phase: IntroPhase;
+  /** 헤더 ↺로 직접 재생한 경우. 자동 재생 조건(모바일 등)을 무시한다 */
+  forced: boolean;
   /** 오버레이 클릭 → 조립 시작 */
   enter: () => void;
   /** 조립 완료(+120ms) 또는 건너뛰기 → .45s 페이드아웃 후 600ms 뒤 off */
@@ -22,8 +24,11 @@ const IntroContext = createContext<IntroContextValue | null>(null);
 const prefersReducedMotion = () =>
   typeof matchMedia !== "undefined" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// 모바일(~599px)은 자동 재생하지 않음. 헤더 ↺로는 볼 수 있다 (IntroOverlay.module.css와 같은 기준)
+const isMobile = () => typeof matchMedia !== "undefined" && matchMedia("(max-width: 599.98px)").matches;
+
 function shouldShowIntro() {
-  if (!siteConfig.features.showIntro || prefersReducedMotion()) return false;
+  if (!siteConfig.features.showIntro || prefersReducedMotion() || isMobile()) return false;
   if (siteConfig.features.introOncePerSession) {
     try {
       if (sessionStorage.getItem(INTRO_SESSION_KEY)) return false;
@@ -71,7 +76,7 @@ export function IntroProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <IntroContext.Provider value={{ phase: effectivePhase, enter, finish, replay }}>
+    <IntroContext.Provider value={{ phase: effectivePhase, forced, enter, finish, replay }}>
       {children}
     </IntroContext.Provider>
   );

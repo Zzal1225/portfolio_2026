@@ -25,17 +25,19 @@ export function Header() {
           <span className={styles.accent}>{siteConfig.logoSuffix}</span>
         </Link>
         <nav className={styles.nav}>
+          {/* 모바일: ↺ 아이콘만 남기고 Project·GitHub은 숨김 (카드·상세 페이지로 충분) */}
           <button
             type='button'
             onClick={onReplay}
             title='인트로 다시 보기'
-            className={`${styles.pill} ${styles.muted}`}
+            aria-label='인트로 다시 보기'
+            className={`${styles.pill} ${styles.muted} ${styles.replay}`}
           >
-            ↺ Intro
+            ↺<span className={styles.replayText}>Intro</span>
           </button>
           <Link
             href={`/projects/${featuredProject.id}`}
-            className={styles.pill}
+            className={`${styles.pill} ${styles.hideMobile}`}
           >
             Project
           </Link>
@@ -43,7 +45,7 @@ export function Header() {
             href={siteConfig.links.github}
             target='_blank'
             rel='noreferrer'
-            className={styles.pill}
+            className={`${styles.pill} ${styles.hideMobile}`}
           >
             GitHub ↗
           </a>

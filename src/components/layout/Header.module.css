@@ -11,14 +11,16 @@
 .inner {
   max-width: var(--container-main);
   margin: 0 auto;
-  padding: 16px var(--gutter);
+  padding: 16px 24px;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 12px;
 }
 
 .logo,
 .logo:hover {
+  flex-shrink: 0;
+  white-space: nowrap;
   font: 800 18px var(--font-sans);
   letter-spacing: -0.02em;
   color: var(--color-ink);
@@ -32,21 +34,17 @@
 .nav {
   margin-left: auto;
   display: flex;
-  gap: 6px;
+  align-items: center;
+  gap: 4px;
   font: 600 14px var(--font-sans);
-  /* 모바일 헤더는 시안 미정 → 좁으면 가로 스크롤 */
-  min-width: 0;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.logo {
-  flex-shrink: 0;
 }
 
 .pill {
   all: unset;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
   cursor: pointer;
   padding: 8px 14px;
@@ -54,17 +52,59 @@
   color: var(--color-ink);
 }
 
-.pill:hover {
-  background: var(--color-hover);
-  color: var(--color-ink);
+.pill:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .pill:hover {
+    background: var(--color-hover);
+    color: var(--color-ink);
+  }
 }
 
 .muted {
   color: var(--gray-666);
 }
 
+/* ↺ 와 Intro 사이 간격 (pill이 flex라 텍스트 공백은 사라짐) */
+.replayText {
+  margin-left: 0.3em;
+}
+
 .contact,
 .contact:hover {
   background: var(--color-ink);
   color: #fff;
+}
+
+/* ── Mobile ~599px: 로고 · ↺ · 연락하기만 ─── */
+@media (max-width: 599.98px) {
+  .inner {
+    padding: 12px 16px;
+  }
+
+  .logo,
+  .logo:hover {
+    font-size: 16px;
+  }
+
+  .hideMobile,
+  .replayText {
+    display: none;
+  }
+
+  /* 터치 대상 최소 44px */
+  .replay {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    font-size: 18px;
+  }
+
+  .contact {
+    min-height: 44px;
+    box-sizing: border-box;
+  }
 }

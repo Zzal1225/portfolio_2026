@@ -1,7 +1,5 @@
-// 프로젝트 상세 콘텐츠. 텍스트는 예시 → 실제 내용으로 교체.
+// 프로젝트 콘텐츠 (메인 카드 + 상세 페이지).
 // 메인 화면과 헤더 "Project"는 첫 번째 프로젝트(featuredProject)를 노출한다.
-
-export type ProjectAccent = 'blue' | 'coral';
 
 /** 메인 카드 · 상세 상단에서 공유하는 16:9 영상. 값이 null이면 플레이스홀더 */
 export interface ProjectVideo {
@@ -30,9 +28,7 @@ export interface ProjectUpdate {
 
 export interface Project {
   id: string; // 라우트 /projects/[id]
-  no: string; // "01"
   year: string;
-  accent: ProjectAccent;
   title: string; // 상세 H1
   cardTitle: string; // 메인 카드 제목
   // 메인 카드 소개글. 배열 한 칸 = 한 줄(문단) 또는 목록 블록, 빈 배열이면 숨김
@@ -95,9 +91,7 @@ const nanakiFeatures = [
 export const projects: Project[] = [
   {
     id: '1',
-    no: '01',
     year: '2026',
-    accent: 'blue',
     title: 'NANAKI — 나는 나를 키운다.',
     cardTitle: 'NANAKI — 나는 나를 키운다.',
     cardSummary: [
@@ -185,7 +179,6 @@ export const projects: Project[] = [
         },
         {
           title: '아이폰에서만 나는 버그를 자동 테스트로 잡기',
-          // TODO: 라벨은 임시로 붙임. 원하는 대로 수정
           rows: [
             {
               label: '문제',
@@ -288,6 +281,18 @@ export const projects: Project[] = [
     updates: {
       title: '배포 이후',
       items: [
+        {
+          date: '2026.10.27',
+          type: 'perf',
+          title: '배포 Lighthouse 성능 90+',
+          body: '원인부터 재 보니 JS 크기보다 LCP 요소가 문제였어요. 투명도 0에서 시작하는 로고 애니메이션이 LCP 후보에서 빠지고 있었고, 기록 탭 카드는 데이터가 온 뒤에야 처음 그려졌어요. 둘을 바로잡고 로그인 버튼 코드와 Sentry를 첫 화면 뒤로 미뤘어요.',
+          metric: {
+            main: '성능 87·74·74 → 99·95·92',
+            sub: '로그인 LCP 3.77s → 1.98s (모바일, 3회 중앙값)',
+          },
+          pr: 'https://github.com/Zzal1225/nanaki/pull/141',
+        },
+
         {
           date: '2026.10.27',
           type: 'design',

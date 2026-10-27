@@ -9,6 +9,14 @@
   transition: opacity 0.45s ease;
 }
 
+/* 모바일은 자동 재생 안 함: 서버 렌더 직후 오버레이가 번쩍이지 않게 CSS로도 숨김.
+   헤더 ↺로 직접 재생(data-forced)하면 보인다 */
+@media (max-width: 599.98px) {
+  .overlay:not([data-forced]) {
+    display: none;
+  }
+}
+
 .overlay[data-leaving] {
   opacity: 0;
   pointer-events: none;

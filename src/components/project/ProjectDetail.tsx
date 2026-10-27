@@ -18,7 +18,7 @@ export function ProjectDetail({ project }: { project: Project }) {
     `${String(++sectionNo).padStart(2, '0')} · ${name}`;
 
   return (
-    <main className={styles.main} data-accent={project.accent}>
+    <main className={styles.main}>
       <div className={styles.intro}>
         <Link href='/' className={styles.back}>
           ← MAIN

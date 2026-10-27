@@ -1,4 +1,4 @@
-// 메인 벤토 카드 콘텐츠 (텍스트는 예시 → 실제 내용으로 교체)
+// 메인 벤토 카드 콘텐츠 (About · 전환 서사 · 경력 · 스택)
 
 export const about = {
   avatar: '/images/avatar.png',

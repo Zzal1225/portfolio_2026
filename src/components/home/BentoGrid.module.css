@@ -1,26 +1,27 @@
+/* 반응형 스펙: Mobile ~599px 1열 · Tablet 600–1023px 2열 · Laptop 1024px~ 4열(최대 1200) */
+
 .main {
   max-width: var(--container-main);
   margin: 0 auto;
-  padding: 24px var(--gutter) 64px;
+  padding: 24px 32px 64px;
 }
 
-/* 1–2행: About(2×2) · 경력(2) · 이력서 · Stack / 3행: 프로젝트(전체) / 4행: 서사(전체) */
+/*
+ * Laptop  : About(2×2) · Career(1×2) · Resume / Stack  →  Project(전체) → Origin(전체)
+ * Tablet  : About(전체) → Career(1×2) · Resume / Stack →  Project → Origin
+ * Mobile  : About → Project → Career → Stack → Origin → Resume (CSS order)
+ */
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-auto-rows: minmax(180px, auto);
-  grid-auto-flow: dense;
-  gap: var(--grid-gap);
-}
-
-@media (max-width: 759.98px) {
-  .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  gap: 16px;
 }
 
 /* ── 카드 공통 ───────────────────────────── */
 .card {
+  --card-pad: 24px;
+  --card-pad-l: 36px;
+  --inner-radius: var(--radius-md);
   border-radius: var(--radius-xl);
   color: var(--color-ink);
 }
@@ -36,32 +37,34 @@ a.card:hover {
   border: 1px solid var(--color-border);
 }
 
-/* Resume: 그림자 없이 들어올리기만 */
+/* Resume: 그림자 없이 들어올리기만. 터치 기기에선 hover가 남지 않게 */
 .lift {
   transition: transform var(--ease-card);
 }
 
-.lift:hover {
-  transform: var(--lift-hover);
+@media (hover: hover) {
+  .lift:hover {
+    transform: var(--lift-hover);
+  }
 }
 
 /* ── 1. About ────────────────────────────── */
 .about {
   grid-column: span 2;
   grid-row: span 2;
-  min-height: 400px;
-  padding: 36px;
+  min-height: 440px;
+  padding: var(--card-pad-l);
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
   background: var(--color-blue);
   color: #fff;
 }
 
 .avatar {
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   flex-shrink: 0;
   border-radius: 50%;
   overflow: hidden;
@@ -76,92 +79,74 @@ a.card:hover {
 
 .aboutHeadline {
   margin: auto 0 0;
-  /* 시안 52px. 좁은 화면에서 한 단어가 넘치지 않게 하한만 둠 */
-  font: 800 clamp(36px, 9vw, 52px) / 1.1 var(--font-sans);
+  /* 30(모바일) → 42(태블릿) → 48(노트북) */
+  font: 800 clamp(30px, 5vw, 48px) / 1.15 var(--font-sans);
   letter-spacing: -0.035em;
 }
 
 .aboutIntro {
   margin: 0;
-  max-width: 440px;
-  font: 500 18px/1.6 var(--font-sans);
+  max-width: 460px;
+  font: 500 17px/1.65 var(--font-sans);
 }
 
-/* ── 2. 실무 경력 ─────────────────────────── */
-/* 가로 2칸: 왼쪽 기간 요약 · 오른쪽 회사/업무. 좁으면 세로로 접힌다 */
+/* ── 2. Career (세로로 긴 1칸) ────────────── */
 .career {
-  grid-column: span 2;
-  padding: 24px;
+  grid-row: span 2;
+  padding: var(--card-pad);
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px 28px;
+  flex-direction: column;
+  gap: 14px;
   background: var(--color-yellow);
 }
 
-.careerSummary {
-  flex: 0 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 16px;
-}
-
 .careerLabel {
-  font: 700 13px var(--font-sans);
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.06em;
   color: var(--color-yellow-ink);
 }
 
 .careerValue {
-  font: 800 clamp(32px, 3.2vw, 44px) / 1.1 var(--font-sans);
+  font: 800 40px/1.05 var(--font-sans);
   letter-spacing: -0.03em;
-}
-
-.careerDetail {
-  flex: 1 1 260px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 16px 18px;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.45);
 }
 
 .careerCompany {
   margin: 0;
-  font: 800 20px/1.3 var(--font-sans);
-  letter-spacing: -0.02em;
+  font: 700 16px/1.4 var(--font-sans);
 }
 
 .careerMeta {
-  margin-top: 4px;
-  font: 600 13px var(--font-sans);
+  margin-top: 2px;
+  font: 500 13px var(--font-sans);
   color: var(--color-yellow-ink);
 }
 
 .careerList {
-  margin: 0;
+  margin: auto 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   font: 500 14px/1.55 var(--font-sans);
+  color: #3d3200;
 }
 
 .careerList > li {
   position: relative;
-  padding-left: 14px;
+  padding-left: 12px;
 }
 
 .careerList > li::before {
   content: "";
   position: absolute;
   left: 0;
-  top: 0.68em;
-  width: 5px;
-  height: 5px;
+  top: 0.7em;
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: var(--color-ink);
+  background: currentColor;
 }
 
 .careerNote {
@@ -170,52 +155,50 @@ a.card:hover {
 
 /* ── 3. Resume ───────────────────────────── */
 .resume {
-  padding: 24px;
+  min-height: 150px;
+  padding: var(--card-pad);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .resumeLabel {
-  font: 700 13px var(--font-sans);
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.06em;
   color: var(--gray-888);
 }
 
 .resumeTitle {
-  font: 800 22px/1.3 var(--font-sans);
+  font: 800 20px/1.3 var(--font-sans);
   letter-spacing: -0.02em;
 }
 
 /* ── 4. Stack ────────────────────────────── */
 .stack {
-  padding: 24px;
+  padding: var(--card-pad);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   background: var(--color-dark);
   color: #fff;
 }
 
 .stackLabel {
-  font: 700 13px var(--font-sans);
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.06em;
   color: var(--gray-999);
-}
-
-.stackGroups {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-  gap: 20px;
 }
 
 .stackGroup {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
 }
 
 .stackHeading {
   margin: 0;
-  font: 700 15px var(--font-sans);
+  font: 600 13px var(--font-sans);
   color: #fff;
 }
 
@@ -229,12 +212,12 @@ a.card:hover {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  font: 600 13px var(--font-sans);
+  gap: 5px;
+  font: 600 12px var(--font-sans);
 }
 
 .chip {
-  padding: 7px 11px;
+  padding: 6px 10px;
   border-radius: var(--radius-pill);
 }
 
@@ -248,112 +231,25 @@ a.card:hover {
   color: #fff;
 }
 
-/* ── 5. 전환 서사 (Publisher → Frontend) ──── */
-.origin {
-  grid-column: 1 / -1;
-  padding: 20px 20px 20px 32px;
-  display: grid;
-  /* 4열: 텍스트 2칸 · 캡쳐 1칸 / 2열: 세로로 쌓임 */
-  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
-  align-items: center;
-  gap: 28px;
-  background: var(--color-coral);
-}
-
-@media (max-width: 759.98px) {
-  .origin {
-    grid-template-columns: minmax(0, 1fr);
-    padding: 24px 16px 16px;
-  }
-}
-
-.originBody {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-@media (max-width: 759.98px) {
-  .originBody {
-    padding: 0 12px;
-  }
-}
-
-.originLabel {
-  font: 700 12px var(--font-sans);
-  letter-spacing: 0.06em;
-  color: var(--color-coral-ink);
-}
-
-.originTitle {
-  margin: 0;
-  font: 800 26px/1.25 var(--font-sans);
-  letter-spacing: -0.02em;
-}
-
-/* 본문 아래에 버튼 */
-.originRow {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 20px;
-}
-
-.originText {
-  max-width: 640px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font: 500 16px/1.65 var(--font-sans);
-  color: var(--color-coral-body);
-}
-
-.originText > p {
-  margin: 0;
-}
-
-.darkPill,
-.darkPill:hover {
-  background: var(--color-ink);
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: var(--radius-pill);
-  font: 600 14px var(--font-sans);
-}
-
-.originShot {
-  height: 240px;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.35);
-}
-
-/* ── 6. 프로젝트 (메인 하이라이트) ────────── */
+/* ── 5. 프로젝트 (메인 하이라이트) ────────── */
 .project {
   grid-column: 1 / -1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
 }
 
 .projectVideo {
-  border-radius: var(--radius-md);
+  border-radius: var(--inner-radius);
 }
 
-.projectFoot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: 16px 24px;
-  padding: 4px 8px 8px;
-}
-
-.projectText {
+.projectInfo {
+  padding: 8px 12px 8px 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .projectLabel {
@@ -364,82 +260,239 @@ a.card:hover {
 
 .projectTitle {
   margin: 0;
-  font: 800 clamp(26px, 5vw, 34px) / 1.2 var(--font-sans);
+  /* 22(모바일) → 26(태블릿) → 30(노트북) */
+  font: 800 clamp(22px, 3vw, 30px) / 1.2 var(--font-sans);
   letter-spacing: -0.025em;
 }
 
-/* 제목 아래 소개글: 제목과 스택 사이에서 한 박자 쉬어가도록 위아래 여백 */
-.projectSummary {
-  max-width: 640px;
-  margin: 4px 0 6px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font: 500 16px/1.65 var(--font-sans);
+.projectText {
+  margin: 0;
+  font: 500 15px/1.6 var(--font-sans);
   color: var(--gray-444);
 }
 
-.projectSummary > p {
-  margin: 0;
-}
-
-/* 소개글 안의 목록 블록 (핵심 기능): 앞뒤 문단과 여백으로 구분 */
-.summaryList {
-  margin: 12px 0;
+/* 핵심 기능: 위아래 구분선이 있는 줄 목록 */
+.featureBlock {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
-.summaryListLabel {
-  font: 700 13px var(--font-sans);
+.featureLabel {
+  font: 700 12px var(--font-sans);
   letter-spacing: 0.04em;
   color: var(--color-blue);
 }
 
-.summaryList ul {
+.featureRows {
   margin: 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 15px;
+  border-top: 1px solid var(--color-border);
 }
 
-.summaryList li {
-  position: relative;
-  padding-left: 16px;
+.featureRows > li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border);
+  font: 500 15px/1.55 var(--font-sans);
+  color: var(--gray-444);
 }
 
-.summaryList li::before {
-  content: "";
-  position: absolute;
-  left: 2px;
-  top: 0.72em;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--color-blue);
-}
-
-.summaryList b {
+.featureRows b {
   font-weight: 700;
   color: var(--color-ink);
 }
 
+.projectFooter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 .projectStack {
-  font: 500 15px var(--font-sans);
+  flex: 1 1 200px;
+  font: 500 13px/1.5 var(--font-sans);
   color: var(--gray-666);
 }
 
 .projectCta,
 .projectCta:hover {
-  margin-left: auto;
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  padding: 13px 22px;
+  border-radius: var(--radius-pill);
   background: var(--color-ink);
   color: #fff;
-  padding: 14px 24px;
+  font: 600 15px var(--font-sans);
+  text-align: center;
+}
+
+/* ── 6. 전환 서사 (Publisher → Frontend) ──── */
+.origin {
+  grid-column: 1 / -1;
+  padding: var(--card-pad-l);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  align-items: center;
+  gap: 24px;
+  background: var(--color-coral);
+}
+
+.originBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.originLabel {
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.06em;
+  color: var(--color-coral-ink);
+}
+
+.originTitle {
+  margin: 0;
+  font: 800 clamp(22px, 3vw, 30px) / 1.25 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.originText {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 15px/1.65 var(--font-sans);
+  color: var(--color-coral-body);
+}
+
+.originText > p {
+  margin: 0;
+}
+
+.darkPill,
+.darkPill:hover {
+  margin-top: 4px;
+  padding: 10px 16px;
   border-radius: var(--radius-pill);
-  font: 600 16px var(--font-sans);
+  background: var(--color-ink);
+  color: #fff;
+  font: 600 14px var(--font-sans);
+}
+
+.originShot {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--inner-radius);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Tablet 600–1023px · 2열 ─────────────── */
+@media (max-width: 1023.98px) {
+  .main {
+    padding: 24px 24px 56px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    --card-pad-l: 32px;
+  }
+
+  .about {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    min-height: 360px;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+  }
+
+  .project {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .projectInfo {
+    padding: 4px 8px 8px;
+  }
+
+  .origin {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+}
+
+/* ── Mobile ~599px · 1열 ─────────────────── */
+@media (max-width: 599.98px) {
+  .main {
+    padding: 16px 16px 40px;
+  }
+
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    --card-pad: 20px;
+    --card-pad-l: 24px 20px;
+    --inner-radius: 14px;
+    border-radius: 22px;
+  }
+
+  .about {
+    min-height: 0;
+    order: 1;
+  }
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+  }
+
+  .aboutIntro {
+    font-size: 15px;
+  }
+
+  /* 대표작이 스크롤 한 번 안에 보이도록 두 번째로 */
+  .project {
+    order: 2;
+    padding: 12px;
+  }
+
+  .career {
+    grid-row: auto;
+    order: 3;
+  }
+
+  .careerValue {
+    font-size: 36px;
+  }
+
+  .stack {
+    order: 4;
+  }
+
+  .origin {
+    order: 5;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 이력서는 맨 아래 가로 바: 마지막 행동 버튼 */
+  .resume {
+    order: 6;
+    min-height: 0;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .projectCta,
+  .projectCta:hover {
+    flex: 1 1 100%;
+  }
 }

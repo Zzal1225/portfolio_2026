@@ -1,22 +1,20 @@
+/* 반응형 스펙: Mobile ~599px · Tablet 600–1023px · Laptop 1024px~ (본문 최대 880px) */
+
 .main {
   --accent: var(--color-blue);
   max-width: var(--container-detail);
   margin: 0 auto;
-  padding: 32px var(--gutter) 96px;
+  padding: 48px 0 72px;
   display: flex;
   flex-direction: column;
   gap: 48px;
-}
-
-.main[data-accent="coral"] {
-  --accent: var(--color-coral);
 }
 
 /* ── 상단 소개 ───────────────────────────── */
 .intro {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .back,
@@ -38,27 +36,28 @@
 
 .title {
   margin: 0;
-  /* 시안 56px. 좁은 화면에서 한 단어가 넘치지 않게 하한만 둠 */
-  font: 800 clamp(36px, 9vw, 56px) / 1.1 var(--font-sans);
+  /* 30(모바일) → 42(태블릿) → 52(노트북) */
+  font: 800 clamp(30px, 5.2vw, 52px) / 1.15 var(--font-sans);
   letter-spacing: -0.035em;
 }
 
 .lead {
   margin: 0;
-  font: 500 20px/1.6 var(--font-sans);
+  font: 500 18px/1.65 var(--font-sans);
   color: var(--gray-444);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .btn {
   padding: 12px 20px;
   border-radius: var(--radius-pill);
   font: 600 15px var(--font-sans);
+  text-align: center;
 }
 
 .btnDark,
@@ -74,29 +73,22 @@
   border: 1px solid var(--color-border-strong);
 }
 
-/* ── 메타 카드 ───────────────────────────── */
-/* 값이 길어서(스택 · 핵심 수치) 4열 대신 2×2 */
+/* ── 메타 카드: 2×2 (값이 길어서) ─────────── */
 .meta {
   margin: 0;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-@media (max-width: 599.98px) {
-  .meta {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  gap: 10px;
 }
 
 .metaCard {
-  padding: 20px;
+  padding: 18px 20px;
   border-radius: var(--radius-lg);
   background: var(--color-card);
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .metaHighlight {
@@ -115,7 +107,7 @@
 
 .metaValue {
   margin: 0;
-  font: 700 18px/1.45 var(--font-sans);
+  font: 700 17px/1.45 var(--font-sans);
 }
 
 /* ── 영상 (메인 카드와 같은 영상) ─────────── */
@@ -142,13 +134,14 @@
 
 .sectionTitle {
   margin: 0;
-  font: 800 32px/1.3 var(--font-sans);
+  /* 22 → 32 */
+  font: 800 clamp(22px, 3.4vw, 32px) / 1.3 var(--font-sans);
   letter-spacing: -0.02em;
 }
 
 .body {
   margin: 0;
-  font: 500 18px/1.75 var(--font-sans);
+  font: 500 17px/1.75 var(--font-sans);
   color: var(--gray-444);
 }
 
@@ -166,7 +159,7 @@
   gap: 16px;
 }
 
-/* 03 · 주요 기능 카드 */
+/* ── 03 · 주요 기능 카드 ─────────────────── */
 .features {
   margin: 0;
   padding: 0;
@@ -174,12 +167,6 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
-}
-
-@media (max-width: 759.98px) {
-  .features {
-    grid-template-columns: minmax(0, 1fr);
-  }
 }
 
 .feature {
@@ -202,7 +189,7 @@
   color: var(--gray-555);
 }
 
-/* 해결 과정 번호 카드 */
+/* ── 02 · 고민 카드: 번호+제목 → 라벨|내용 줄 → 측정 조건 ── */
 .steps {
   margin: 0;
   padding: 0;
@@ -212,7 +199,6 @@
   gap: 12px;
 }
 
-/* 카드: 번호+제목 → 라벨|내용 줄(위 구분선) → 측정 조건 */
 .step {
   padding: 28px 28px 24px;
   border-radius: var(--radius-lg);
@@ -221,17 +207,17 @@
 }
 
 .stepHead {
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   display: flex;
   align-items: baseline;
-  gap: 14px;
+  gap: 12px;
   font: 800 19px/1.4 var(--font-sans);
   letter-spacing: -0.01em;
 }
 
 .stepNo {
   flex-shrink: 0;
-  font: 700 16px ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font: 700 15px ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
   color: var(--accent);
 }
 
@@ -241,21 +227,20 @@
 
 .stepRow {
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
-  gap: 24px;
-  padding: 16px 0;
+  grid-template-columns: 64px minmax(0, 1fr);
+  gap: 16px;
+  padding: 14px 0;
   border-top: 1px solid var(--color-border);
 }
 
 .stepLabel {
-  padding-top: 1px;
-  font: 600 14px/1.6 var(--font-sans);
+  font: 600 14px/1.7 var(--font-sans);
   color: var(--gray-666);
 }
 
 .stepText {
   margin: 0;
-  font: 500 15.5px/1.75 var(--font-sans);
+  font: 500 15px/1.7 var(--font-sans);
   color: var(--gray-444);
 }
 
@@ -270,42 +255,24 @@
   color: var(--color-ink);
 }
 
-@media (max-width: 599.98px) {
-  .step {
-    padding: 22px 20px 18px;
-  }
-
-  .stepRow {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 4px;
-    padding: 14px 0;
-  }
-}
-
 .stepNote {
   margin: 4px 0 0;
-  font: 500 13px var(--font-sans);
+  font: 500 13px/1.5 var(--font-sans);
   color: var(--gray-888);
 }
 
-/* 3장 한 줄 / 좁으면 세로로 (한 장만 다음 줄에 남지 않게) */
+/* ── 03 · 스크린샷 3장 ───────────────────── */
 .shots {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-@media (max-width: 599.98px) {
-  .shots {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
 .shotFigure {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* 스크린샷 원본 비율(2400×2160 = 10:9) 그대로: 목업이 잘리지 않게 */
@@ -322,127 +289,66 @@
   color: var(--gray-666);
 }
 
-/* ── 품질: 수치 카드 + CI 흐름 ────────────── */
-/* 6칸 그리드: 기본 3장씩 한 줄, 5장이면 아랫줄 2장이 반씩 나눠 꽉 채움 (3 + 2) */
+/* ── 04 · 검증 수치 5칸 → 3칸 → 2칸 ─────── */
 .stats {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .stat {
-  grid-column: span 2;
-}
-
-.stat:nth-child(3n + 1):nth-last-child(2),
-.stat:nth-child(3n + 2):nth-last-child(1) {
-  grid-column: span 3;
-}
-
-/* 좁은 화면: 2장씩, 홀수 개면 마지막 장은 가로 전체 */
-@media (max-width: 599.98px) {
-  .stats {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .stat,
-  .stat:nth-child(3n + 1):nth-last-child(2),
-  .stat:nth-child(3n + 2):nth-last-child(1) {
-    grid-column: span 1;
-  }
-
-  .stat:last-child:nth-child(odd) {
-    grid-column: span 2;
-  }
-}
-
-.stat {
-  padding: 20px;
+  padding: 16px;
   border-radius: var(--radius-lg);
   background: var(--color-card);
   border: 1px solid var(--color-border);
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .statLabel {
-  font: 600 13px var(--font-sans);
+  font: 600 12px var(--font-sans);
   color: var(--gray-888);
 }
 
 .statValue {
   margin: 0;
-  font: 800 22px/1.3 var(--font-sans);
+  font: 800 20px/1.3 var(--font-sans);
   letter-spacing: -0.02em;
 }
 
 .statNote {
-  margin: 0;
-  font: 500 13px/1.5 var(--font-sans);
+  margin: 2px 0 0;
+  font: 500 12px/1.5 var(--font-sans);
   color: var(--gray-666);
 }
 
-/* 넓은 화면: 한 줄에 단계를 균등 배치 → 화살표 / 좁은 화면: 세로로 ↓ */
+/* ── 04 · CI 7단계 → 4열 → 세로 목록 ─────── */
 .pipeline {
   margin: 0;
-  padding: 20px;
+  padding: 12px;
   list-style: none;
   border-radius: var(--radius-lg);
   background: var(--color-dark);
   color: #fff;
-  display: flex;
-  align-items: stretch;
-  gap: 24px;
-  font: 600 13px/1.35 var(--font-sans);
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  font: 600 13px/1.4 var(--font-sans);
 }
 
 .pipelineStage {
-  position: relative;
-  flex: 1 1 0;
   min-width: 0;
+  padding: 12px 6px;
+  border-radius: 10px;
+  background: var(--color-dark-chip);
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* 단계마다 글 길이가 달라도 번호 높이가 맞도록 위에서부터 쌓기 */
-  justify-content: flex-start;
-  gap: 8px;
-  padding: 14px 6px;
-  border-radius: 14px;
-  background: var(--color-dark-chip);
+  gap: 10px;
   text-align: center;
   text-wrap: balance;
-}
-
-.pipelineStage + .pipelineStage::before {
-  content: "→";
-  position: absolute;
-  left: -18px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--gray-888);
-}
-
-@media (max-width: 759.98px) {
-  .pipeline {
-    flex-direction: column;
-    gap: 22px;
-  }
-
-  .pipelineStage {
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 10px 14px;
-    text-align: left;
-  }
-
-  .pipelineStage + .pipelineStage::before {
-    content: "↓";
-    left: 22px;
-    top: -20px;
-    transform: none;
-  }
 }
 
 .pipelineNo {
@@ -501,8 +407,10 @@
   transition: transform var(--ease-card);
 }
 
-.home:hover {
-  transform: var(--lift-hover);
+@media (hover: hover) {
+  .home:hover {
+    transform: var(--lift-hover);
+  }
 }
 
 .homeArrow {
@@ -512,4 +420,114 @@
 .homeTitle {
   font: 800 22px var(--font-sans);
   letter-spacing: -0.02em;
+}
+
+/* ── Tablet 600–1023px ───────────────────── */
+@media (max-width: 1023.98px) {
+  .main {
+    padding: 40px 40px 64px;
+  }
+
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pipeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Mobile ~599px ───────────────────────── */
+@media (max-width: 599.98px) {
+  .main {
+    padding: 24px 20px 48px;
+    gap: 36px;
+  }
+
+  .lead,
+  .body {
+    font-size: 16px;
+  }
+
+  /* 버튼: '바로 체험하기' 전체 폭, 나머지 둘은 반반 */
+  .actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .actions > .btn:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .subTitle {
+    font-size: 20px;
+  }
+
+  /* 고민 카드: 라벨을 본문 위로 올려 본문 폭 확보 */
+  .step {
+    padding: 20px;
+  }
+
+  .stepHead {
+    font-size: 17px;
+  }
+
+  .stepRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2px;
+    padding: 12px 0;
+  }
+
+  /* 스크린샷: 가로 스와이프 (78% 폭, scroll-snap). 화면 끝까지 붙도록 좌우 여백만큼 확장 */
+  .shots {
+    display: flex;
+    gap: 10px;
+    margin: 0 -20px;
+    padding: 0 20px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;
+    scrollbar-width: none;
+  }
+
+  .shots::-webkit-scrollbar {
+    display: none;
+  }
+
+  .shotFigure {
+    flex: 0 0 78%;
+    scroll-snap-align: start;
+  }
+
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .pipeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pipelineStage {
+    flex-direction: row;
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .home,
+  .home:hover {
+    padding: 22px 24px;
+    border-radius: 22px;
+  }
 }

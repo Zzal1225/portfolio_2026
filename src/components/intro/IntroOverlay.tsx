@@ -8,7 +8,7 @@ import styles from './IntroOverlay.module.css';
 
 // 3D 인트로 오버레이. 스펙: design README "3D 인트로" / 원본 로직: Portfolio.dc.html initIntro()
 export function IntroOverlay() {
-  const { phase, enter, finish } = useIntro();
+  const { phase, forced, enter, finish } = useIntro();
   const canvasHost = useRef<HTMLDivElement>(null);
   const scene = useRef<IntroSceneHandle | null>(null);
   // three.js 로딩 전에 클릭된 경우, 씬 생성 직후 조립을 시작하기 위한 플래그
@@ -46,6 +46,7 @@ export function IntroOverlay() {
   return (
     <div
       className={styles.overlay}
+      data-forced={forced || undefined}
       data-leaving={phase === 'leaving' || undefined}
       data-assembling={phase !== 'idle' || undefined}
       onClick={enter}
