@@ -60,7 +60,7 @@ export function IntroOverlay() {
       <div className={styles.chrome}>
         <div className={styles.top}>
           <span className={styles.logo}>
-            {siteConfig.name}{' '}
+            {siteConfig.name}
             <span className={styles.logoAccent}>{siteConfig.logoSuffix}</span>
           </span>
           <button

@@ -2,8 +2,8 @@
 // href="#" 인 값은 실제 링크로 교체 필요.
 
 export const siteConfig = {
-  name: '박찬령 ',
-  logoSuffix: 'PORTFOLIO', // 로고: 이름 + 블루 PORTFOLIO
+  name: '박찬령',
+  logoSuffix: 'PORTFOLIO', // 로고: 이름 + 블루 PORTFOLIO (사이 간격은 CSS margin)
   title: '박찬령 — 프론트엔드 개발자 포트폴리오',
   description: '퍼블리셔에서 프론트엔드로, 블록처럼 쌓아 올린 인터페이스.',
 
@@ -14,8 +14,8 @@ export const siteConfig = {
   },
 
   links: {
-    email: 'pakcam35@naver.com',
-    resume: '#', // 이력서 PDF (public/resume.pdf 권장)
+    email: 'mailto:pakcam35@naver.com',
+    resume: '/images/resume.pdf', // public/images/resume.pdf
     originSite: 'https://ryeong-portfolio.netlify.app/', // 신입 시절 포트폴리오 사이트
     github: 'https://github.com/',
   },

@@ -83,6 +83,8 @@ function ResumeCard() {
   return (
     <a
       href={siteConfig.links.resume}
+      target='_blank'
+      rel='noreferrer'
       data-bento
       className={`${styles.card} ${styles.white} ${styles.lift} ${styles.resume}`}
     >

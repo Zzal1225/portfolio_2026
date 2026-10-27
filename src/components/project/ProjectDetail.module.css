@@ -323,11 +323,38 @@
 }
 
 /* ── 품질: 수치 카드 + CI 흐름 ────────────── */
+/* 6칸 그리드: 기본 3장씩 한 줄, 5장이면 아랫줄 2장이 반씩 나눠 꽉 채움 (3 + 2) */
 .stats {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 12px;
+}
+
+.stat {
+  grid-column: span 2;
+}
+
+.stat:nth-child(3n + 1):nth-last-child(2),
+.stat:nth-child(3n + 2):nth-last-child(1) {
+  grid-column: span 3;
+}
+
+/* 좁은 화면: 2장씩, 홀수 개면 마지막 장은 가로 전체 */
+@media (max-width: 599.98px) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stat,
+  .stat:nth-child(3n + 1):nth-last-child(2),
+  .stat:nth-child(3n + 2):nth-last-child(1) {
+    grid-column: span 1;
+  }
+
+  .stat:last-child:nth-child(odd) {
+    grid-column: span 2;
+  }
 }
 
 .stat {

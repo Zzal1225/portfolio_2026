@@ -103,10 +103,10 @@ export const projects: Project[] = [
     cardSummary: [
       '가계부·운동·루틴·체형까지, 흩어진 자기관리 기록을 캘린더 하나에 모으는 PWA예요.',
       { label: '핵심 기능', items: nanakiFeatures },
-      '기획부터 디자인, 배포까지 혼자 만들었어요.',
+      '1인으로 기획·설계하고 Claude Code와 함께 구현했어요.',
     ],
     cardStack: 'Next.js · TypeScript · Supabase · PWA · Playwright',
-    lead: '돈, 몸, 습관. 흩어진 자기관리 기록을 캘린더 하나에 모으는 PWA예요. 기획부터 디자인, 개발, 배포까지 혼자 했고, 오프라인에서도 쓸 수 있으며 AI에게 내 기록을 말로 물어볼 수 있게 만들었습니다.',
+    lead: '돈, 몸, 습관. 흩어진 자기관리 기록을 캘린더 하나에 모으는 PWA예요. 1인으로 기획·설계하고 Claude Code와 함께 구현했고, 오프라인에서도 쓸 수 있으며 AI에게 내 기록을 말로 물어볼 수 있게 만들었습니다.',
     // http로 시작하면 새 탭, '#…'이면 같은 페이지 안의 섹션으로 이동
     links: [
       { label: '바로 체험하기 ↗', href: 'https://nanaki-two.vercel.app/' },
@@ -230,14 +230,14 @@ export const projects: Project[] = [
           value: '845개',
           note: '동기화·스키마·AI 응답 거르기·날짜 계산 등 핵심 로직 위주',
         },
-        { label: 'E2E', value: '크로미움 + WebKit' },
-        { label: '화면 비교', value: '36장' },
-        { label: '성능 측정', value: 'Lighthouse CI' },
         {
           label: '통합 테스트',
           value: '70개',
           note: '진짜 DB(로컬 Supabase)에서 다른 사용자 데이터 접근 차단(RLS) 확인',
         },
+        { label: 'E2E', value: '크로미움 + WebKit' },
+        { label: '화면 비교', value: '36장' },
+        { label: '성능 측정', value: 'Lighthouse CI' },
       ],
 
       pipeline: [
