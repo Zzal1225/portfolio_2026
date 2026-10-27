@@ -1,0 +1,445 @@
+.main {
+  max-width: var(--container-main);
+  margin: 0 auto;
+  padding: 24px var(--gutter) 64px;
+}
+
+/* 1–2행: About(2×2) · 경력(2) · 이력서 · Stack / 3행: 프로젝트(전체) / 4행: 서사(전체) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(180px, auto);
+  grid-auto-flow: dense;
+  gap: var(--grid-gap);
+}
+
+@media (max-width: 759.98px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── 카드 공통 ───────────────────────────── */
+.card {
+  border-radius: var(--radius-xl);
+  color: var(--color-ink);
+}
+
+/* 카드가 <a>일 때 전역 링크 색 무시 */
+a.card,
+a.card:hover {
+  color: var(--color-ink);
+}
+
+.white {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+}
+
+/* Resume: 그림자 없이 들어올리기만 */
+.lift {
+  transition: transform var(--ease-card);
+}
+
+.lift:hover {
+  transform: var(--lift-hover);
+}
+
+/* ── 1. About ────────────────────────────── */
+.about {
+  grid-column: span 2;
+  grid-row: span 2;
+  min-height: 400px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background: var(--color-blue);
+  color: #fff;
+}
+
+.avatar {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.avatarImg {
+  object-fit: cover;
+  /* 세로 사진(760×1024)에서 얼굴 중심으로 크롭 */
+  object-position: 50% 22%;
+}
+
+.aboutHeadline {
+  margin: auto 0 0;
+  /* 시안 52px. 좁은 화면에서 한 단어가 넘치지 않게 하한만 둠 */
+  font: 800 clamp(36px, 9vw, 52px) / 1.1 var(--font-sans);
+  letter-spacing: -0.035em;
+}
+
+.aboutIntro {
+  margin: 0;
+  max-width: 440px;
+  font: 500 18px/1.6 var(--font-sans);
+}
+
+/* ── 2. 실무 경력 ─────────────────────────── */
+/* 가로 2칸: 왼쪽 기간 요약 · 오른쪽 회사/업무. 좁으면 세로로 접힌다 */
+.career {
+  grid-column: span 2;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 28px;
+  background: var(--color-yellow);
+}
+
+.careerSummary {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.careerLabel {
+  font: 700 13px var(--font-sans);
+  color: var(--color-yellow-ink);
+}
+
+.careerValue {
+  font: 800 clamp(32px, 3.2vw, 44px) / 1.1 var(--font-sans);
+  letter-spacing: -0.03em;
+}
+
+.careerDetail {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.careerCompany {
+  margin: 0;
+  font: 800 20px/1.3 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.careerMeta {
+  margin-top: 4px;
+  font: 600 13px var(--font-sans);
+  color: var(--color-yellow-ink);
+}
+
+.careerList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font: 500 14px/1.55 var(--font-sans);
+}
+
+.careerList > li {
+  position: relative;
+  padding-left: 14px;
+}
+
+.careerList > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-ink);
+}
+
+.careerNote {
+  color: var(--color-yellow-ink);
+}
+
+/* ── 3. Resume ───────────────────────────── */
+.resume {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.resumeLabel {
+  font: 700 13px var(--font-sans);
+  color: var(--gray-888);
+}
+
+.resumeTitle {
+  font: 800 22px/1.3 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+/* ── 4. Stack ────────────────────────────── */
+.stack {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--color-dark);
+  color: #fff;
+}
+
+.stackLabel {
+  font: 700 13px var(--font-sans);
+  color: var(--gray-999);
+}
+
+.stackGroups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 20px;
+}
+
+.stackGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.stackHeading {
+  margin: 0;
+  font: 700 15px var(--font-sans);
+  color: #fff;
+}
+
+.stackHeadingSub {
+  color: var(--gray-bbb);
+}
+
+.chips {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font: 600 13px var(--font-sans);
+}
+
+.chip {
+  padding: 7px 11px;
+  border-radius: var(--radius-pill);
+}
+
+.chipLight {
+  background: #fff;
+  color: var(--color-ink);
+}
+
+.chipDark {
+  background: var(--color-dark-chip);
+  color: #fff;
+}
+
+/* ── 5. 전환 서사 (Publisher → Frontend) ──── */
+.origin {
+  grid-column: 1 / -1;
+  padding: 20px 20px 20px 32px;
+  display: grid;
+  /* 4열: 텍스트 2칸 · 캡쳐 1칸 / 2열: 세로로 쌓임 */
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 28px;
+  background: var(--color-coral);
+}
+
+@media (max-width: 759.98px) {
+  .origin {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 24px 16px 16px;
+  }
+}
+
+.originBody {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 759.98px) {
+  .originBody {
+    padding: 0 12px;
+  }
+}
+
+.originLabel {
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.06em;
+  color: var(--color-coral-ink);
+}
+
+.originTitle {
+  margin: 0;
+  font: 800 26px/1.25 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+/* 본문 아래에 버튼 */
+.originRow {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.originText {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font: 500 16px/1.65 var(--font-sans);
+  color: var(--color-coral-body);
+}
+
+.originText > p {
+  margin: 0;
+}
+
+.darkPill,
+.darkPill:hover {
+  background: var(--color-ink);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font: 600 14px var(--font-sans);
+}
+
+.originShot {
+  height: 240px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ── 6. 프로젝트 (메인 하이라이트) ────────── */
+.project {
+  grid-column: 1 / -1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.projectVideo {
+  border-radius: var(--radius-md);
+}
+
+.projectFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px 24px;
+  padding: 4px 8px 8px;
+}
+
+.projectText {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.projectLabel {
+  font: 700 12px var(--font-sans);
+  letter-spacing: 0.08em;
+  color: var(--color-blue);
+}
+
+.projectTitle {
+  margin: 0;
+  font: 800 clamp(26px, 5vw, 34px) / 1.2 var(--font-sans);
+  letter-spacing: -0.025em;
+}
+
+/* 제목 아래 소개글: 제목과 스택 사이에서 한 박자 쉬어가도록 위아래 여백 */
+.projectSummary {
+  max-width: 640px;
+  margin: 4px 0 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 16px/1.65 var(--font-sans);
+  color: var(--gray-444);
+}
+
+.projectSummary > p {
+  margin: 0;
+}
+
+/* 소개글 안의 목록 블록 (핵심 기능): 앞뒤 문단과 여백으로 구분 */
+.summaryList {
+  margin: 12px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summaryListLabel {
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.04em;
+  color: var(--color-blue);
+}
+
+.summaryList ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+}
+
+.summaryList li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.summaryList li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.72em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-blue);
+}
+
+.summaryList b {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.projectStack {
+  font: 500 15px var(--font-sans);
+  color: var(--gray-666);
+}
+
+.projectCta,
+.projectCta:hover {
+  margin-left: auto;
+  flex-shrink: 0;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font: 600 16px var(--font-sans);
+}

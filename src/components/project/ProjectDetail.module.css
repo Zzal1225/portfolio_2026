@@ -1,0 +1,488 @@
+.main {
+  --accent: var(--color-blue);
+  max-width: var(--container-detail);
+  margin: 0 auto;
+  padding: 32px var(--gutter) 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.main[data-accent="coral"] {
+  --accent: var(--color-coral);
+}
+
+/* ── 상단 소개 ───────────────────────────── */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.back,
+.back:visited {
+  align-self: flex-start;
+  font: 600 14px var(--font-sans);
+  color: var(--gray-666);
+}
+
+.back:hover {
+  color: var(--color-ink);
+}
+
+.label {
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+  /* 시안 56px. 좁은 화면에서 한 단어가 넘치지 않게 하한만 둠 */
+  font: 800 clamp(36px, 9vw, 56px) / 1.1 var(--font-sans);
+  letter-spacing: -0.035em;
+}
+
+.lead {
+  margin: 0;
+  font: 500 20px/1.6 var(--font-sans);
+  color: var(--gray-444);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: var(--radius-pill);
+  font: 600 15px var(--font-sans);
+}
+
+.btnDark,
+.btnDark:hover {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.btnLight,
+.btnLight:hover {
+  background: #fff;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border-strong);
+}
+
+/* ── 메타 카드 ───────────────────────────── */
+/* 값이 길어서(스택 · 핵심 수치) 4열 대신 2×2 */
+.meta {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 599.98px) {
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.metaCard {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.metaHighlight {
+  background: var(--color-yellow);
+  border-color: transparent;
+}
+
+.metaLabel {
+  font: 600 13px var(--font-sans);
+  color: var(--gray-888);
+}
+
+.metaHighlight .metaLabel {
+  color: var(--color-yellow-ink);
+}
+
+.metaValue {
+  margin: 0;
+  font: 700 18px/1.45 var(--font-sans);
+}
+
+/* ── 영상 (메인 카드와 같은 영상) ─────────── */
+.video {
+  border-radius: var(--radius-xl);
+}
+
+/* ── 본문 섹션 ───────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sectionWide {
+  gap: 20px;
+}
+
+.sectionLabel {
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.08em;
+  color: var(--gray-888);
+}
+
+.sectionTitle {
+  margin: 0;
+  font: 800 32px/1.3 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.body {
+  margin: 0;
+  font: 500 18px/1.75 var(--font-sans);
+  color: var(--gray-444);
+}
+
+/* 섹션 안의 소제목 (예: 고민했던 세 가지 · 디자인 시스템) */
+.subTitle {
+  margin: 16px 0 0;
+  font: 800 24px/1.35 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.subBlock {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 03 · 주요 기능 카드 */
+.features {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 759.98px) {
+  .features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.feature {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featureName {
+  font: 700 17px/1.4 var(--font-sans);
+}
+
+.featureDesc {
+  font: 500 15px/1.6 var(--font-sans);
+  color: var(--gray-555);
+}
+
+/* 해결 과정 번호 카드 */
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 카드: 번호+제목 → 라벨|내용 줄(위 구분선) → 측정 조건 */
+.step {
+  padding: 28px 28px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+}
+
+.stepHead {
+  margin: 0 0 20px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font: 800 19px/1.4 var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+.stepNo {
+  flex-shrink: 0;
+  font: 700 16px ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  color: var(--accent);
+}
+
+.stepRows {
+  margin: 0;
+}
+
+.stepRow {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.stepLabel {
+  padding-top: 1px;
+  font: 600 14px/1.6 var(--font-sans);
+  color: var(--gray-666);
+}
+
+.stepText {
+  margin: 0;
+  font: 500 15.5px/1.75 var(--font-sans);
+  color: var(--gray-444);
+}
+
+/* 결과 줄: 파란 라벨 + 진한 굵은 글씨 */
+.stepRowStrong .stepLabel {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stepRowStrong .stepText {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+@media (max-width: 599.98px) {
+  .step {
+    padding: 22px 20px 18px;
+  }
+
+  .stepRow {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+    padding: 14px 0;
+  }
+}
+
+.stepNote {
+  margin: 4px 0 0;
+  font: 500 13px var(--font-sans);
+  color: var(--gray-888);
+}
+
+/* 3장 한 줄 / 좁으면 세로로 (한 장만 다음 줄에 남지 않게) */
+.shots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 599.98px) {
+  .shots {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.shotFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 스크린샷 원본 비율(2400×2160 = 10:9) 그대로: 목업이 잘리지 않게 */
+.shot {
+  aspect-ratio: 10 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+
+.shotCaption {
+  padding: 0 4px;
+  font: 500 14px/1.5 var(--font-sans);
+  color: var(--gray-666);
+}
+
+/* ── 품질: 수치 카드 + CI 흐름 ────────────── */
+.stats {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.statLabel {
+  font: 600 13px var(--font-sans);
+  color: var(--gray-888);
+}
+
+.statValue {
+  margin: 0;
+  font: 800 22px/1.3 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.statNote {
+  margin: 0;
+  font: 500 13px/1.5 var(--font-sans);
+  color: var(--gray-666);
+}
+
+/* 넓은 화면: 한 줄에 단계를 균등 배치 → 화살표 / 좁은 화면: 세로로 ↓ */
+.pipeline {
+  margin: 0;
+  padding: 20px;
+  list-style: none;
+  border-radius: var(--radius-lg);
+  background: var(--color-dark);
+  color: #fff;
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  font: 600 13px/1.35 var(--font-sans);
+}
+
+.pipelineStage {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* 단계마다 글 길이가 달라도 번호 높이가 맞도록 위에서부터 쌓기 */
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 14px 6px;
+  border-radius: 14px;
+  background: var(--color-dark-chip);
+  text-align: center;
+  text-wrap: balance;
+}
+
+.pipelineStage + .pipelineStage::before {
+  content: "→";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gray-888);
+}
+
+@media (max-width: 759.98px) {
+  .pipeline {
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  .pipelineStage {
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .pipelineStage + .pipelineStage::before {
+    content: "↓";
+    left: 22px;
+    top: -20px;
+    transform: none;
+  }
+}
+
+.pipelineNo {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 12px var(--font-sans);
+}
+
+/* ── 디자인 시스템 ───────────────────────── */
+/* 상단 버튼(#design-system)으로 이동할 때 sticky 헤더에 가리지 않게 */
+.anchor {
+  scroll-margin-top: 96px;
+}
+
+/* ── 회고 아래 메모 박스 ─────────────────── */
+.aside {
+  margin-top: 8px;
+  padding: 22px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.asideLabel {
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+.asideBody {
+  margin: 0;
+  font: 500 16px/1.7 var(--font-sans);
+  color: var(--gray-444);
+}
+
+/* ── 메인으로 돌아가기 ───────────────────── */
+.home,
+.home:hover {
+  padding: 28px 32px;
+  border-radius: var(--radius-xl);
+  background: var(--color-dark);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: transform var(--ease-card);
+}
+
+.home:hover {
+  transform: var(--lift-hover);
+}
+
+.homeArrow {
+  font: 600 24px var(--font-sans);
+}
+
+.homeTitle {
+  font: 800 22px var(--font-sans);
+  letter-spacing: -0.02em;
+}

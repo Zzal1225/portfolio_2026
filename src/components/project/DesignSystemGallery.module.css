@@ -1,0 +1,206 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ── 메인 뷰어 ───────────────────────────── */
+.viewer {
+  position: relative;
+}
+
+.stage {
+  all: unset;
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  cursor: zoom-in;
+}
+
+.stage:focus-visible {
+  outline: 3px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
+.img {
+  object-fit: cover;
+}
+
+.zoomHint {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(17, 17, 17, 0.75);
+  color: #fff;
+  font: 600 13px var(--font-sans);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.stage:hover .zoomHint,
+.stage:focus-visible .zoomHint {
+  opacity: 1;
+}
+
+.arrow {
+  all: unset;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 14px rgba(17, 17, 17, 0.12);
+  color: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 26px/1 var(--font-sans);
+  cursor: pointer;
+}
+
+.arrow:focus-visible {
+  outline: 3px solid var(--color-blue);
+}
+
+.prev {
+  left: 12px;
+}
+
+.next {
+  right: 12px;
+}
+
+/* ── 번호 탭 ─────────────────────────────── */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tab {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  border-radius: var(--radius-pill);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  font: 600 14px var(--font-sans);
+  color: var(--gray-666);
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--color-ink);
+}
+
+.tab:focus-visible {
+  outline: 3px solid var(--color-blue);
+}
+
+.tab[aria-selected="true"] {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: #fff;
+}
+
+.tabNo {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+/* ── 전체 페이지 캡처 링크 ───────────────── */
+.fullPages {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  font: 600 14px var(--font-sans);
+}
+
+.fullPagesLabel {
+  color: var(--gray-888);
+}
+
+.fullPageLink,
+.fullPageLink:hover {
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── 확대 보기 ───────────────────────────── */
+.dialog {
+  width: min(96vw, 1600px);
+  max-width: none;
+  max-height: 96vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.dialog::backdrop {
+  background: rgba(17, 17, 17, 0.86);
+}
+
+/* 상단: 현재 위치 · 닫기 */
+.dialogBar {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: #fff;
+  font: 600 14px var(--font-sans);
+}
+
+.dialogCounter {
+  opacity: 0.85;
+}
+
+.dialogClose {
+  all: unset;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+}
+
+.dialogClose:hover {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.dialogClose:focus-visible {
+  outline: 3px solid var(--color-blue);
+}
+
+/* 이미지 + 좌우 화살표 (.arrow · .prev · .next는 메인 뷰어와 공유) */
+.dialogStage {
+  position: relative;
+}
+
+.dialogImg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+}
+
+.dialogStage .arrow {
+  width: 52px;
+  height: 52px;
+  font-size: 30px;
+}

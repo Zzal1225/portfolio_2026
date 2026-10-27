@@ -1,0 +1,113 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--color-bg);
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.overlay[data-leaving] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+}
+
+/* ── 텍스트 레이어 (조립 시작 시 페이드아웃) ── */
+.center,
+.chrome {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.chrome {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px 32px;
+  transition: opacity 0.4s ease;
+}
+
+.overlay[data-assembling] .center,
+.overlay[data-assembling] .chrome {
+  opacity: 0;
+}
+
+.eyebrow {
+  font: 700 14px var(--font-sans);
+  letter-spacing: 0.14em;
+  color: var(--color-blue);
+}
+
+.headline {
+  font: 800 clamp(40px, 7vw, 104px) / 1.04 var(--font-sans);
+  letter-spacing: -0.045em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font: 800 18px var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.logoAccent {
+  color: var(--color-blue);
+}
+
+.skip {
+  all: unset;
+  pointer-events: auto;
+  cursor: pointer;
+  margin-left: auto;
+  font: 600 14px var(--font-sans);
+  color: var(--gray-666);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+}
+
+.skip:hover {
+  background: var(--color-hover);
+  color: var(--color-ink);
+}
+
+/* 조립 중엔 건너뛰기 비활성 (텍스트가 사라진 상태) */
+.overlay[data-assembling] .skip {
+  pointer-events: none;
+}
+
+.bottom {
+  display: flex;
+  justify-content: center;
+}
+
+.cta {
+  background: var(--color-ink);
+  color: #fff;
+  font: 600 15px var(--font-sans);
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+}

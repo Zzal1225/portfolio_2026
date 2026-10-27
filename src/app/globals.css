@@ -1,0 +1,98 @@
+/* 디자인 토큰: design/design_handoff_portfolio/README.md "디자인 토큰" 기준 */
+:root {
+  /* color — base */
+  --color-bg: #f7f7f5;
+  --color-ink: #111;
+  --color-card: #fff;
+  --color-border: #e6e6e2;
+  --color-border-strong: #e0e0dc;
+  --color-border-header: #ebebe7;
+  --color-hover: #ececE8;
+  --color-header-bg: rgba(247, 247, 245, 0.88);
+
+  /* color — accent */
+  --color-blue: #2b4bff;
+  --color-blue-hover: #1a33cc;
+  --color-coral: #ff6b4a;
+  --color-coral-ink: #5c1f0f;
+  --color-coral-body: #3a1309;
+  --color-yellow: #ffd84d;
+  --color-yellow-ink: #5a4a00;
+
+  /* color — dark */
+  --color-dark: #111;
+  --color-dark-chip: #262626;
+
+  /* color — gray text */
+  --gray-444: #444;
+  --gray-555: #555;
+  --gray-666: #666;
+  --gray-888: #888;
+  --gray-999: #999;
+  --gray-bbb: #bbb;
+
+  /* radius */
+  --radius-pill: 99px;
+  --radius-xl: 28px; /* 벤토 · 대형 이미지 */
+  --radius-lg: 20px; /* 상세 카드 */
+  --radius-md: 18px; /* 카드 내 이미지 */
+  --radius-sm: 16px;
+
+  /* shadow / motion */
+  --shadow-hover: 0 18px 40px rgba(17, 17, 17, 0.08);
+  --lift-hover: translateY(-4px);
+  --ease-card: 0.25s ease;
+
+  /* layout (그리드 2열 전환 브레이크포인트: 760px — 미디어쿼리엔 변수 불가) */
+  --container-main: 1200px;
+  --container-detail: 880px;
+  --gutter: 24px;
+  --grid-gap: 16px;
+
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  /* 한글 줄바꿈: 공백에서만 끊기 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: var(--color-blue);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-blue-hover);
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}

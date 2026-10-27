@@ -1,0 +1,182 @@
+.log {
+  --mono: ui-monospace, "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  padding: 36px 40px 40px;
+  border-radius: var(--radius-xl);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+@media (max-width: 599.98px) {
+  .log {
+    padding: 28px 20px;
+  }
+}
+
+.label {
+  font: 700 13px var(--font-sans);
+  letter-spacing: 0.08em;
+  color: var(--gray-888);
+}
+
+.title {
+  margin: 0 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  font: 800 32px/1.3 var(--font-sans);
+  letter-spacing: -0.02em;
+}
+
+.count {
+  font: 600 15px var(--font-sans);
+  letter-spacing: 0;
+  color: var(--gray-888);
+}
+
+/* ── 타임라인: 날짜 | 점·세로선 | 내용 ───── */
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  column-gap: 40px;
+  padding-bottom: 32px;
+}
+
+.item:last-child {
+  padding-bottom: 0;
+}
+
+/* 세로선: 마지막 항목 아래로는 그리지 않음 */
+.item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 116px;
+  top: 22px;
+  bottom: -6px;
+  width: 1px;
+  background: var(--color-border);
+}
+
+/* 점 */
+.item::before {
+  content: "";
+  position: absolute;
+  left: 112px;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-ink);
+}
+
+.item[data-latest]::before {
+  background: var(--color-blue);
+}
+
+.date {
+  padding-top: 2px;
+  font: 500 14px var(--mono);
+  color: var(--gray-888);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+}
+
+.itemTitle {
+  margin: 0;
+  font: 700 17px/1.4 var(--font-sans);
+}
+
+.tag {
+  flex-shrink: 0;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  font: 700 12px var(--font-sans);
+}
+
+.tag[data-type="perf"] {
+  background: #e7ecff;
+  color: var(--color-blue);
+}
+
+.tag[data-type="design"] {
+  background: #ececea;
+  color: var(--color-ink);
+}
+
+.tag[data-type="feature"] {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+}
+
+.tag[data-type="fix"] {
+  background: #ffe5de;
+  color: var(--color-coral-ink);
+}
+
+.body {
+  margin: 0;
+  font: 500 15px/1.65 var(--font-sans);
+  color: var(--gray-444);
+}
+
+.metric {
+  margin: 4px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  font: 700 15px var(--mono);
+}
+
+.metricSub {
+  font-weight: 600;
+  color: var(--gray-888);
+}
+
+.pr,
+.pr:hover {
+  align-self: flex-start;
+  font: 600 13px var(--font-sans);
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* 좁은 화면: 날짜를 내용 위로 올리고 점·선은 왼쪽 끝에 */
+@media (max-width: 599.98px) {
+  .item {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 6px;
+    padding-left: 24px;
+  }
+
+  .item::before {
+    left: 0;
+    top: 6px;
+  }
+
+  .item:not(:last-child)::after {
+    left: 4px;
+    top: 20px;
+  }
+}
