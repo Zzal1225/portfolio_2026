@@ -40,6 +40,14 @@ export function Header() {
             Project
           </Link>
           <a
+            href={siteConfig.links.github}
+            target='_blank'
+            rel='noreferrer'
+            className={styles.pill}
+          >
+            GitHub ↗
+          </a>
+          <a
             href={siteConfig.links.email}
             className={`${styles.pill} ${styles.contact}`}
           >
